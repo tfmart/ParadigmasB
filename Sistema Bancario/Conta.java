@@ -5,12 +5,15 @@ public abstract class Conta {
     private String senhaConta;
 
     //Construtor da classe
-    //Funções set da classe
     public Conta(String nome, int numeroDaConta, String senha) {
         nomeCorrentista = nome;
         numeroConta = numeroDaConta;
         senhaConta = senha;
-        saldoConta = 0.0;
+    }
+
+    //Funções SET da classe
+    public void setSaldo(double valor) {
+        saldoConta = valor;
     }
 
     //Funções para obter parâmetros (GET)
@@ -29,7 +32,6 @@ public abstract class Conta {
 
     //Métodos da classe
     public void deposito(double valor) {
-        //return saldoConta + valor;
         saldoConta = saldoConta + valor;
     }
 
