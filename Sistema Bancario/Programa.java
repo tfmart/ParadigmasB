@@ -47,10 +47,13 @@ public class Programa {
             switch (menuPrincipal) {
                 case 1:
                     //Menu Gerente
-                    while(menuGerente != 3) {
+                    while(menuGerente != 6) {
                         System.out.printf("1- Criar conta\n");
                         System.out.printf("2- Visualizar informacoes de conta\n");
-                        System.out.printf("3- Sair\n");
+                        System.out.printf("3- Incrementar rendimentos\n");
+                        System.out.printf("4- Cobranca de juros\n");
+                        System.out.printf("5- Imprimir informacoes de todas as contas\n");
+                        System.out.printf("6- Sair\n");
                         menuGerente = input.nextInt();
                         switch (menuGerente) {
                             case 1:
@@ -150,6 +153,22 @@ public class Programa {
                                 }
                                 break;
                             case 3:
+                                //Incrementar redimentos
+                                break;
+                            case 4:
+                                //Realizar cobrança de juros
+                                break;
+                            case 5:
+                                //Imprimir informações de todas as contas
+                                for(int index = 0; index < 30; index++) {
+                                    if(contas[index] != null) {
+                                        System.out.print("==================================\n");
+                                        contas[index].detalhesConta();
+                                        System.out.print("==================================\n\n");
+                                    }
+                                }
+                                break;
+                            case 6:
                                 System.out.printf("\n\nSaindo do menu de gerente\n\n");
                                 break;
                             default:
