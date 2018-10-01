@@ -26,7 +26,9 @@ public class ContaEspecial extends Conta {
 
     void saque(double valor) {
         if((valor <= getAccountBalance()) || ((getAccountBalance() - valor) <= (-1 * getAccountLimit())))  {
+            saldo = getAccountBalance();
             saldo = saldo - valor;
+            setSaldo(saldo);
         } else {
             System.out.printf("Nao ha saldo o suficiente");
         }
