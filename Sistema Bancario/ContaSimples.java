@@ -19,7 +19,9 @@ public class ContaSimples extends Conta{
 
     void saque(double valor) {
         if (valor <= getAccountBalance()) {
+            saldo = getAccountBalance();
             saldo = saldo - valor;
+            setSaldo(saldo);
         } else {
             System.out.printf("Nao ha saldo o suficiente");
         }
