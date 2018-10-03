@@ -10,6 +10,11 @@ public class Poupanca extends Conta {
         taxaJuros = juros;
     }
 
+    //Função SET
+    void increaseInterestRate(double valor) {
+        taxaJuros = taxaJuros + valor;
+    }
+
     //Função GET p/ taxa de juros
     public double getAccountInterestRate() {
         return taxaJuros;
