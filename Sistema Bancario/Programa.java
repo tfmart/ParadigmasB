@@ -22,6 +22,8 @@ public class Programa {
         double deposito;
         String novaSenha;
         double saque;
+        double addTaxa;
+        double juros;
 
         //Variaveis para menus
         int menuPrincipal = 0;
@@ -104,8 +106,6 @@ public class Programa {
                                         switch (menuEscolherConta) {
                                             case 1:
                                                 //Cria uma conta simples
-                                                //contasSimples[qtdeSimples] = new ContaSimples(correntista, numeroConta, senha);
-                                                //qtdeSimples++;
                                                 contas[qtdeContas] = new ContaSimples(correntista, numeroConta, senha);
                                                 qtdeContas++;
                                                 break;
@@ -114,8 +114,6 @@ public class Programa {
                                                 System.out.printf("Digite o limite da conta: ");
                                                 limite = input.nextDouble();
                                                 //Cria uma conta especial
-                                                //contasEspeciais[qtdeEspecial] = new ContaEspecial(correntista, numeroConta, senha, limite);
-                                                //qtdeEspecial++;
                                                 contas[qtdeContas] = new ContaEspecial(correntista, numeroConta, senha, limite);
                                                 qtdeContas++;
                                                 break;
@@ -124,8 +122,6 @@ public class Programa {
                                                 System.out.printf("Digite a taxa de juros:  ");
                                                 taxaDeJuros = input.nextDouble();
                                                 //Cria uma poupanca
-                                                //poupancas[qtdePoupanca] = new Poupanca(correntista, numeroConta, senha, taxaDeJuros);
-                                                //qtdePoupanca++;
                                                 contas[qtdeContas] = new Poupanca(correntista, numeroConta, senha, taxaDeJuros);
                                                 qtdeContas++;
                                                 break;
@@ -154,9 +150,24 @@ public class Programa {
                                 break;
                             case 3:
                                 //Incrementar redimentos
+                                System.out.printf("O quanto você quer incrementar o rendimento? ");
+                                addTaxa = input.nextDouble();
+                                for(int index = 0; index < qtdeContas; index++) {
+                                    if(contas[index] instanceof Poupanca) {
+                                        contas[index].increaseInterestRate(addTaxa);
+                                    }
+                                }
                                 break;
                             case 4:
                                 //Realizar cobrança de juros
+                                System.out.printf("O quanto de juros você deseja cobrar? ");
+                                juros = input.nextDouble();
+                                for(int index = 0; index < 30; index++) {
+                                    if(contas[index] instanceof ContaEspecial && contas[index].getAccountBalance() > 0) {
+                                        double calculaSaldo = contas[index].getAccountBalance() + (contas[index].getAccountBalance() * juros);
+                                        contas[index].setSaldo(calculaSaldo);
+                                    }
+                                }
                                 break;
                             case 5:
                                 //Imprimir informações de todas as contas
@@ -281,5 +292,4 @@ public class Programa {
 }
 
 //ERRORS
-    // Error 1 - Acesso ao case default em switch menuEscolherConta
-    // Error 2 - Erro no switch de busca de conta ao tentar logar no menu cliente
+    // Error 1 - Erro no switch de busca de conta ao tentar logar no menu cliente
