@@ -41,5 +41,6 @@ public abstract class Conta {
 
     abstract void detalhesConta();
     abstract void saque(double valor);
+    abstract void increaseInterestRate(double valor);
 
 }
