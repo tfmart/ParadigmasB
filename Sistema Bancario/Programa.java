@@ -1,6 +1,10 @@
+//TO-DO
+    //1. Fix password bug when logging out of account
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Programa {
     public static void main(String[] args) {
@@ -74,7 +78,14 @@ public class Programa {
                                         System.out.printf("Digite o nome do correntista: ");
                                         correntista = input.nextLine();
                                         System.out.printf("Digite o numero da conta: ");
-                                        numeroConta = input.nextInt();
+                                        try {
+                                            numeroConta = input.nextInt();
+                                        }
+                                        catch(InputMismatchException e) {
+                                            input.nextLine();
+                                            System.out.printf("Numero invalido\nDigite um numero de conta valido: ");
+                                            numeroConta = input.nextInt();
+                                        }
                                         input.nextLine();
                                         //verifica se o numero de conta ja foi usado
                                         for(int index = 0; index < qtdeContas; index++) {
@@ -138,7 +149,14 @@ public class Programa {
                             case 2:
                                 //Visualizar informação de conta
                                 System.out.printf("Digite o numero da conta: ");
-                                buscaConta = input.nextInt();
+                                try {
+                                    buscaConta = input.nextInt();
+                                }
+                                catch(InputMismatchException e) {
+                                    input.nextLine();
+                                    System.out.printf("Valor invalido\nDigite um numero de conta valido: ");
+                                    buscaConta = input.nextInt();
+                                }
                                 //Busca em contas
                                 for(int index = 0; index < qtdeContas; index++) {
                                     if(contas[index].getAccountNumber() == buscaConta) {
@@ -147,11 +165,22 @@ public class Programa {
                                         break;
                                     }
                                 }
+                                if(!busca) {
+                                    System.out.printf("Conta inexsitente\n");
+                                }
                                 break;
                             case 3:
                                 //Incrementar redimentos
                                 System.out.printf("O quanto você quer incrementar o rendimento? ");
-                                addTaxa = input.nextDouble();
+                                //CRIAR EXCECAO PARA LEITURA DE addTaxa
+                                try {
+                                    addTaxa = input.nextDouble();
+                                }
+                                catch (InputMismatchException e) {
+                                    input.nextLine();
+                                    System.out.printf("Numero invalido. Digite um valor valido: ");
+                                    addTaxa = input.nextDouble();
+                                }
                                 for(int index = 0; index < qtdeContas; index++) {
                                     if(contas[index] instanceof Poupanca) {
                                         contas[index].increaseInterestRate(addTaxa);
@@ -161,7 +190,15 @@ public class Programa {
                             case 4:
                                 //Realizar cobrança de juros
                                 System.out.printf("O quanto de juros você deseja cobrar? ");
-                                juros = input.nextDouble();
+                                //CRIAR EXCECAO PARA LEITURA TAXA DE JUROS
+                                try {
+                                    juros = input.nextDouble();
+                                }
+                                catch (InputMismatchException e) {
+                                    input.nextLine();
+                                    System.out.printf("Valor invalido. Digite um numero valido: ");
+                                    juros = input.nextDouble();
+                                }
                                 for(int index = 0; index < 30; index++) {
                                     if(contas[index] instanceof ContaEspecial && contas[index].getAccountBalance() > 0) {
                                         double calculaSaldo = contas[index].getAccountBalance() + (contas[index].getAccountBalance() * juros);
@@ -200,7 +237,15 @@ public class Programa {
                             case 1:
                                 //acessar conta
                                 System.out.printf("Digite o numero da conta: ");
-                                buscaConta = input.nextInt();
+                                //EXCECAO PARA LEITURA DE NUMERO DE CONTA
+                                try {
+                                    buscaConta = input.nextInt();
+                                }
+                                catch (InputMismatchException e) {
+                                    input.nextLine();
+                                    System.out.printf("Numero invalido. Digite um valor valido: ");
+                                    buscaConta = input.nextInt();
+                                }
                                 input.nextLine();
                                 //buscar a conta
                                 for(int index = 0; index < qtdeContas; index++) {
@@ -230,13 +275,29 @@ public class Programa {
                                                     case 1:
                                                         //realizar saque
                                                         System.out.printf("Digite o valor a ser sacado: R$");
-                                                        saque = input.nextDouble();
+                                                        //EXCECAO PARA VALOR DE SAQUE
+                                                        try {
+                                                            saque = input.nextDouble();
+                                                        }
+                                                        catch (InputMismatchException e) {
+                                                            input.nextLine();
+                                                            System.out.printf("Valor invalido. Por favor, digite um valor valido: R$ ");
+                                                            saque = input.nextDouble();
+                                                        }
                                                         contas[posicaoArr].saque(saque);   
                                                         break;
                                                     case 2:
                                                         //realizar deposito
                                                         System.out.printf("Digite o valor a ser depositado: R$");
-                                                        deposito = input.nextDouble();
+                                                        //EXCECAO PARA VALOR DE DEPOSITO
+                                                        try {
+                                                            deposito = input.nextDouble();
+                                                        }
+                                                        catch (InputMismatchException e) {
+                                                            input.nextLine();
+                                                            System.out.printf("Valor invalido. Por favor, digite um valor valido: R$ ");
+                                                            deposito = input.nextDouble();
+                                                        }
                                                         contas[posicaoArr].deposito(deposito); 
                                                         break;
                                                     case 3:
@@ -290,6 +351,3 @@ public class Programa {
         input.close();
     }
 }
-
-//ERRORS
-    // Error 1 - Erro no switch de busca de conta ao tentar logar no menu cliente
