@@ -12,7 +12,9 @@ no térreo divididos em seis filas de dez lugares cada;
 - As caminhonetes ocupam o térreo divididas em duas filas de dez lugares cada;
 - As motos, tal como as caminhonetes, ocupam o térreo e encontram-se dispostos em duas filas
 de dez lugares cada.
+
 **Regulamento do parque**
+
 De forma a otimizar o funcionamento do estacionamento a sua direção implementou o seguinte
 sistema:
 - Um veículo só pode entrar se existir um lugar vago para a sua categoria;
